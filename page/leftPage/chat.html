@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xml:lang="zh-TW">
+ <head>
+  <title>Hsu Home</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../style/formStyle.css">
+ </head>
+ <body style="margin:0;padding:0;overflow:hidden" scroll="no"><!--雙重視窗不跳出雙scrollerbar-->
+  <div id="main">
+   <script src="../../script/uiHtml/topbar.js"></script>
+    <marquee direction=up behavior=alternate width=100% height=80 onclick="alert('我們不知道的事情並不等於沒發生。我們不了解的事情並不代表不存在。空空的口袋不能阻礙你的未來目標。空空的腦袋將會讓你永遠貧窮一生。')">
+    <marquee style="width:100%; height:60px" direction=down behavior=alternate>
+      <center>
+        <font color="#8855CC" size="7"><strong>ლ(*꒪ヮ꒪*)ლ提供意見調查</strong></font>
+      </center>
+    </marquee>
+    </marquee>
+    <!--
+    參考圖片
+    https://lovefree365.pixnet.net/blog/post/403192625-%E4%BE%86%E8%87%AA%E6%97%A5%E6%9C%AC%E7%9A%84%E8%A1%A8%E6%83%85%E7%AC%A6%E8%99%9F%E0%B2%A0_%E0%B2%A0~%E9%A1%8F%E6%96%87%E5%AD%97%E3%8A%95%E8%A1%A8%E6%83%85%E7%AC%A6%E8%99%9F
+    HTML marquee 跑馬燈可用的參數如下
+    方向設定：direction="參數值"；可設定 up（向上）、dun（向下）、left（向左）、right（向右）。
+    對齊設定：align="參數值"；可設定 top（向上對齊）、midden（垂直至中）、botton（向下對齊）。
+    速度設定：scrollamount="參數值" ；可設定為數字，通常設定 1~10 的範圍，數字越大跑得越快。
+    長度設定：height="參數值"；數字，自行設定。
+    寬度設定：width="參數值"；數字，自行設定。
+    行為設定：behavior="參數值"；可設定 alternate（來回跑）、slide（跑入後停止）。
+    背景顏色：bgcolor="參數值"；可設定為顏色的色碼，不設定則沒有顏色。
+    -->
+   <div style="background-color: rgb(240, 231, 188)">
+    <iframe id="frameObj" src="https://docs.google.com/forms/d/e/1FAIpQLSfEGDnKyP1DGImRkB9koc0lLaf4K8GGc92wf5d5i2wf_BhYPA/viewform?embedded=true" width="100%" frameborder="0"></iframe>
+   </div>
+  </div>
+  <script>
+   //改變TopBar color
+   document.getElementById("topBar_chat").style.backgroundColor = "lightgreen";
+   document.getElementById("topBar_chat").style.color = "#FF0000";
+   //矯正iframe,embed,object畫面無法正常顯示問題
+   var fmObj = document.getElementById('frameObj');
+   fmObj.height = document.documentElement.scrollHeight-170;
+   //監測畫面zoon縮放
+   window.onresize = function() {
+    document.getElementById("topBar_chat").click();
+   };
+  </script>
+ </body>
+</html>

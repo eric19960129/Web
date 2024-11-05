@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Hsu Home</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style/formStyle.css">
+ </head>
+ <body>
+  <div id="main"> 
+   <script src="script/uiHtml/topbar.js"></script>
+   <center><h1>各頁面說明</h1></center>
+   <div class="tab">
+    <button id="tab_HomeDescription" onclick="changeTab('HomeDescription')" style="border:5px black double;"><h2><center>首頁</center></h2></button>
+    <button id="tab_TopBarDescription" onclick="changeTab('TopBarDescription')" style="border:5px black double;"><h2><center>頂欄</center></h2></button>
+    <button id="tab_SideBarDescription" onclick="changeTab('SideBarDescription')" style="border:5px black double;"><h2><center>側欄</center></h2></button>
+   </div>
+   <div id="HomeDescription" class="tabcontent" style="background-color:#f9f58a">
+    <h2>首頁</h2>
+    <h2><li>首頁主要簡略介紹各頁面</li></h2>
+    <h2><li>左側標籤提供點選，介紹頁面(如:首頁、頂欄、側欄)</li></h2>
+   </div>
+   <div id="TopBarDescription" class="tabcontent" style="background-color:#f9f58a">
+    <h2>頂欄(最上方提供切換不同頁面標籤)</h2>
+    <h2>
+     <ul>
+      <li>首頁
+       <ul><li>目前所看到的網頁，簡略介紹每個頁面(如:首頁、頂欄、側欄)</li></ul>
+      </li>
+     </ul>
+    </h2>
+    <h2>
+     <ul>
+      <li>遊戲
+       <ul><li>主要包含部分遊戲可提供下載和瀏覽圖片(<a href="./page/topPage/game.html?index=0">LF2</a>、<a href="./page/topPage/game.html?index=1">GBA</a>、<a href="./page/topPage/game.html?index=2">PC遊戲</a>，之後會不斷增加)</li></ul>
+      </li>
+     </ul>
+    </h2>
+    <h2>
+     <ul>
+      <li>問與答
+       <ul>
+        <li>主要提供知識、策略、手冊
+         <ul><li><a href="./page/topPage/KnowleageInfo.html?index=0">知識頁籤</a>:主要包含各項參考文件，提供瀏覽</li></ul>
+         <ul><li><a href="./page/topPage/KnowleageInfo.html?index=1">策略頁籤</a>:主要包含常瀏覽的網站連結</li></ul>
+         <ul><li><a href="./page/topPage/KnowleageInfo.html?index=2">手冊頁籤</a>:主要包含可瀏覽的相關手冊</li></ul>
+        </li>
+       </ul>
+      </li>
+     </ul>
+    </h2>
+    <h2>
+     <ul>
+      <li><a href="./page/topPage/tool.html">工具</a>
+       <ul><li>主要提供工具網頁(如程式線上編譯、......等)</li></ul>
+      </li>
+     </ul>
+    </h2>
+    <h2>
+     <ul>
+      <li><a href="./page/topPage/weather.html?keyName=weather">天氣</a>
+       <ul><li>主要提供氣象局網頁瀏覽</li</ul>
+      </li>
+     </ul>
+    </h2>
+   </div>
+   <div id="SideBarDescription" class="tabcontent" style="background-color:#f9f58a">
+    <h2>側欄(左上方三條線圖示<span style="font-size:35px;cursor:pointer;color:blue">&#9776;&thinsp;</span>)</h2>
+    <h2>
+     <ul>
+      <li><a href="./page/leftPage/introduction.html">介紹</a>
+       <ul><li>介紹網頁相關內容</li></ul>
+      </li>
+     </ul>
+    </h2>
+    <h2>
+     <ul>
+      <li><a href="./page/leftPage/photo.html">圖片</a>
+       <ul><li>主要提供圖片欣賞</li></ul>
+      </li>
+     </ul>
+    </h2>
+    <h2>
+      <ul>
+       <li><a href="./page/leftPage/video.html">影片</a>
+        <ul><li>主要提供影片欣賞</li></ul>
+       </li>
+      </ul>
+     </h2>
+     <h2>
+      <ul>
+       <li><a href="./page/leftPage/codeExample.html">程式</a>
+        <ul><li>主要提供簡易程式下載或閱讀</li></ul>
+       </li>
+      </ul>
+     </h2>
+     <h2>
+      <ul>
+       <li><a href="./page/leftPage/FilePage.html">文件</a>
+        <ul><li>主要提供下載部分驅動程式、軟體</li></ul>
+       </li>
+      </ul>
+     </h2>
+     <h2>
+      <ul>
+       <li><a href="./page/leftPage/chat.html">留言板</a>
+        <ul><li>主要提供意見表單，你們的建議是提升網頁進步的動力</li></ul>
+       </li>
+      </ul>
+     </h2>
+   </div>
+  </div>
+  <script>
+   document.getElementById("topBar_Home1").style.backgroundColor = "lightgreen";
+	 document.getElementById("topBar_Home2").style.color = "#FF0000";
+   function changeTab(descriptionName) {
+    var i, tabcontent = document.getElementsByClassName("tabcontent");
+    //初始化全部先做隱藏
+    for (i = 0; i < tabcontent.length; i++) {
+     tabcontent[i].style.display = "none";
+    }
+    //顯示
+    document.getElementById(descriptionName).style.display = "block";
+    //切換TAB改變顏色
+    var tabArray = ["tab_HomeDescription","tab_TopBarDescription","tab_SideBarDescription"];
+    for(i = 0; i < tabArray.length; i++) {
+      var tab = document.getElementById(tabArray[i]);
+      tab.style.backgroundColor = tabArray[i].includes(descriptionName) ? "lightgreen" : "#818181";
+    }
+   }
+   //預設先顯示defaultOpen
+   document.getElementById("tab_HomeDescription").click();
+  </script>
+ </body>
+</html>

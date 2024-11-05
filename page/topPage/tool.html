@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xml:lang="zh-TW">
+ <head>
+  <title>Hsu Home</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../style/formStyle.css">
+  <script src="../../script/uiDocument/topbarFile/documentToolJson.js"></script>
+ </head>
+ <body style="margin:0;padding:0;overflow:hidden" scroll="no"><!--雙重視窗不跳出雙scrollerbar-->
+  <div id="main">
+   <script src="../../script/uiHtml/topbar.js"></script>
+   <h1><span style="position:fixed;top:90px;width:100%;z-index:2;background-color:bisque;padding:15px"><center><span id="typeOption"></span><span id="infoOption"></span><span id="extraTool"></span></center></span></h1>
+   <br><br><br>
+   <center><div id="loader"><span style="font-size:52px">載入中</span></div></center>
+   <span id="infoMsg"></span>
+  </div>
+  <script>
+   //改變TopBar color
+   document.getElementById("topBar_Tool1").style.backgroundColor = "lightgreen";
+   document.getElementById("topBar_Tool2").style.color = "#FF0000";
+   const urlParams = new URLSearchParams(window.location.search);//取得網址傳值
+   //Default   
+   var obj = JSON.parse(jsonStrTool);
+   var optionList = "<select id='sel' onchange='changeTypeList()' style='text-align:center'>";
+   obj.types[0].typeList.forEach(function(dataOption){
+    optionList += "<option value="+dataOption.index+">"+dataOption.name+"</option>";
+   });
+   optionList += "</select></center>";
+   document.getElementById("typeOption").innerHTML = optionList;
+
+   var obj = JSON.parse(jsonStrTool);
+   var optionList = "種類<select id='selList' onchange='changeInfoList()' style='text-align:center'>";
+   obj.types[0].typeList[0].typeListInfos.forEach(function(dataOption){
+    optionList += "<option value="+dataOption.index+">"+dataOption.name+"</option>";
+   });
+   optionList += "</select></center>";
+   document.getElementById("infoOption").innerHTML = optionList;
+
+   var optionInfo = "";
+   optionInfo = obj.types[0].typeList[0].typeListInfos[0].msg;
+   document.getElementById("infoMsg").innerHTML = optionInfo;
+   LoadInfoListSize();
+   //Change Type List
+   function changeTypeList() {
+    var x = document.getElementById("sel").value;
+    var optionInfo = "種類<select id='selList' onchange='changeInfoList()' style='text-align:center'>";
+    var obj = JSON.parse(jsonStrTool);
+    obj.types[0].typeList[x].typeListInfos.forEach(function(dataOption){
+     optionInfo += "<option value="+dataOption.index+">"+dataOption.name+"</option>";
+    });
+    optionInfo += "</select>";
+    document.getElementById("infoOption").innerHTML = optionInfo;
+    //default下面選單跟著變動(預設顯示第一個)
+    document.getElementById("infoMsg").innerHTML = obj.types[0].typeList[x].typeListInfos[0].msg;
+    LoadInfoListSize();
+   }
+   //Change Info List
+   function changeInfoList() {
+    var x = document.getElementById("sel").value;
+    var xx = document.getElementById("selList").value;
+    var optionInfo = obj.types[0].typeList[x].typeListInfos[xx].msg;
+    document.getElementById("infoMsg").innerHTML = optionInfo;
+    LoadInfoListSize();
+   }
+   function LoadInfoListSize() {
+    //矯正iframe,embed,object畫面無法正常顯示問題
+    var fmObj = document.getElementById('frameObj');
+    fmObj.height = document.documentElement.scrollHeight-170;
+    document.getElementById("extraTool").innerHTML = "&nbsp;<a href="+document.getElementById("frameObj").src+" target='_blank'>開新頁面&#9658;</a>";
+    // 每次產生新的iframe時增加载绑定加載事件監聽器
+    document.getElementById("frameObj").addEventListener('load', onLoadHandler);
+    document.getElementById('loader').style.display = 'block';
+    document.getElementById('frameObj').style.display = 'none';
+   }
+   //監測畫面zoon縮放
+   window.onresize = function() {
+    changeInfoList();
+   };
+   //iframe載入完實作項目
+   function onLoadHandler() {
+    document.getElementById('frameObj').style.display = 'block';
+    document.getElementById('loader').style.display = 'none';
+    //因切換info會無法監聽事件，所以移除舊的事件監聽器
+    document.getElementById("frameObj").removeEventListener('load', onLoadHandler);
+   }
+  </script>
+ </body>
+</html>

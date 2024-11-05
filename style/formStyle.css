@@ -1,0 +1,269 @@
+/*bootstrap 最上方矯正左邊過寬問題*/
+.container-fluid {
+ padding-left: 1px;
+}
+
+#main {
+ transition: margin-left .5s;
+ padding-left: 6px;
+ padding-top: 90px;
+}
+
+/*drawer start*/
+.sidenav {
+ height: 100%;
+ width: 0;
+ position: fixed;
+ z-index: 1;
+ top: 0;
+ left: 0;
+ background-color: #111;
+ overflow-x: hidden;
+ transition: 0.5s;
+}
+
+/*TopBar上面文字(首頁、遊戲......)*/
+.nav li a {
+ padding: 8px 3px 8px 3px;/*上右下左*/
+}
+
+/*SideBar左側文字*/
+.sidenav a {
+ padding: 26px 0px 26px 2px;/*上右下左*/
+ text-decoration: none;
+ font-size: 36px;
+ color: #ffffff;/*左側清單初始顏色*/
+ display: block;
+ transition: 0.3s;
+}
+
+/*左側SideBarX按鈕*/
+.sidenav .closebtn {
+    position: absolute;
+    font-size: 45px;
+    top: -12px;
+    right: 3px;
+    color: purple;
+}
+
+/*左側清單選到時顏色*/
+/* .sidenav a:hover, .offcanvas a:focus{
+ color: #f1f1f1; 
+} */
+
+@media screen and (max-width: 1080px) {
+ /*TopBar上面文字(首頁、遊戲......)*/
+ .nav li a {
+  padding: 8px 3px 15px 3px;/*上右下左*/
+ }
+
+ /*SideBar左側文字*/
+ .sidenav a {
+  padding: 30px 0px 30px 1px;/*上右下左*/
+  text-decoration: none;
+  font-size: 24px;
+  color: #ffffff;/*左側清單初始顏色*/
+  display: block;
+  transition: 0.3s;
+ }
+
+ /*左側SideBarX按鈕*/
+ .sidenav .closebtn {
+ position: absolute;
+ font-size: 36px;
+ top: -8px;
+ right: 5px;
+ color: purple;
+ }
+
+ #topBar_Home2, #topBar_Game, #topBar_QA, #topBar_Tool2, #topBar_weather2 {
+  font-size: 25px;
+ }
+}
+/*drawer end*/
+
+/*設定圖片走廊大小*/
+img {
+ width: 100%;
+ height: 390px;
+}
+
+/*設定圖片走廊大小*/
+table,
+th,
+td {
+ border: 5px solid black;
+ border-collapse: collapse;
+}
+
+th,
+td {
+ padding: 5px;
+}
+
+ol {
+ margin-left: 10%;
+}
+
+/*tab style*/
+.tab {
+ float: left;
+ border: 1px solid #ccc;
+ background-color: #f1f1f1;
+ width: 16%;
+ height: 790px; /*首頁左邊tab高度*/
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+ display: block;
+ background-color: inherit;
+ color: black;
+ padding:115px 15px; /*首頁左邊tab文字  上 左*/
+ width: 100%;
+ border: none;
+ outline: none;
+ text-align: left;
+ cursor: pointer;
+ transition: 0.3s;
+ font-size: 17px;
+}
+
+/* Style the tab content */
+.tabcontent {
+ float: left;
+ padding: 0px 12px;
+ border: 1px solid #ccc;
+ width: 84%;
+ border-left: none;
+ height: 909px; /*首頁右邊tab高度*/
+}
+
+/* knowleageinfo toggle switch style start*/
+.switch {
+ position: relative;
+ display: inline-block;
+ width: 60px;
+ height: 34px;
+}
+  
+.switch input { 
+ opacity: 0;
+ width: 0;
+ height: 0;
+}
+  
+.slider {
+ position: absolute;
+ cursor: pointer;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background-color: #ccc;
+ -webkit-transition: .4s;
+ transition: .4s;
+}
+  
+.slider:before {
+ position: absolute;
+ content: "";
+ height: 26px;
+ width: 26px;
+ left: 4px;
+ bottom: 4px;
+ background-color: white;
+ -webkit-transition: .4s;
+ transition: .4s;
+}
+  
+input:checked + .slider {
+ background-color: #2196F3;
+}
+  
+input:focus + .slider {
+ box-shadow: 0 0 1px #2196F3;
+}
+  
+input:checked + .slider:before {
+ -webkit-transform: translateX(26px);
+ -ms-transform: translateX(26px);
+ transform: translateX(26px);
+}
+  
+/* Rounded sliders */
+.slider.round {
+ border-radius: 34px;
+}
+  
+.slider.round:before {
+ border-radius: 50%;
+}
+/* knowleageinfo toggle switch style end*/
+
+/* Google翻譯 https://www.3schools.in/2021/02/how-to-customize-google-translate.html*/
+/* google語言切換選項 */
+#google_translate_element select{
+ background-color:#f6edfd;
+ color:#383ffa;
+ border: none;
+ border-radius:3px;
+ padding:6px 8px;
+ margin-top: 30px;
+ font-size: 26px;
+}
+/* Google下面結構  */
+.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+ display: none;
+}
+/* 由「」技術提供 */
+.goog-te-gadget{
+ color:transparent!important;
+}
+.goog-te-banner-frame.skiptranslate {
+ display: none !important;
+}
+/* Google翻譯隱藏上面功能狀態 https://stackoverflow.com/questions/11248673/hiding-google-translate-bar*/
+.goog-te-gadget img{
+ display:none !important;
+}
+body > .skiptranslate {
+ display: none;
+}
+body {
+ top: 0px !important;
+}
+
+/* game.html searchInput style*/
+#searchInput {
+ background-image: url('../photo/Tool/searchicon.png');
+ background-position: 4px 8px;
+ background-repeat: no-repeat;
+ font-size: 20px;
+ border-radius: 25px;
+ border: 2px solid rgb(0, 0, 0);
+ padding: 9px 40px 2px 25px;/*上右下左*/
+}
+
+/* iframe尚未載入loading效果 style start*/
+#loader {
+ border: 16px solid #f3f3f3;
+ border-radius: 50%;
+ border-top: 16px solid #3498db;
+ width: 500px;
+ height: 500px;
+ -webkit-animation: spin 1s linear infinite; /* Safari */
+ animation: spin 1s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+ 0% { -webkit-transform: rotate(0deg); }
+ 100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+ 0% { transform: rotate(0deg); }
+ 100% { transform: rotate(360deg); }
+}
+/* iframe尚未載入loading效果 style end*/

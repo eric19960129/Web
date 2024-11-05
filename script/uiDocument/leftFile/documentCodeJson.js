@@ -1,0 +1,19 @@
+var jsonStrFile = 
+'{\
+ "types":[\
+ {"type":"Code","typeList":[\
+  {"name":"Code","typeListInfos":[\
+   {"name":"C","index":0,"typeList":[\
+    {"name":"應用邏輯","index":0,"typeListInfo":[\
+     {"codeName":"撲克牌隨便發五張","pathFile":"https://drive.google.com/drive/folders/1iZwjXp_cy7kHdeZxRrQcb8ReBcPLvRo8?usp=sharing","pathCode":"https://drive.google.com/drive/folders/1QsJ8D3qgvbSvZ7OcmUn7w73jO8G4ICf-?usp=sharing"},\
+     {"codeName":"日曆(直接列印幾年幾月)","pathFile":"https://drive.google.com/drive/folders/10ZcjQ5oW7UOQ4UBWYSmT4Gcc5ehpAmDd?usp=sharing","pathCode":"https://drive.google.com/drive/folders/1aJWexrJKsprGLX6I_aVBjSV_NGKA2mGn?usp=sharing"}\
+    ]},\
+    {"name":"演算法","index":1,"typeListInfo":[\
+     {"codeName":"氣泡排序法","pathFile":"https://drive.google.com/drive/folders/19wB1I2bLH_DePOo34VfI3WF2u8U-Jq2C?usp=sharing","pathCode":"https://drive.google.com/drive/folders/1hO0t9t4SuMZ6fWswZ8LH2bZqDRLm7s9e?usp=sharing"},\
+     {"codeName":"桶子排序法","pathFile":"https://drive.google.com/drive/folders/1tm6rhET8zj7GtCdAj8kPF8yHbLnW20Wi?usp=sharing","pathCode":"https://drive.google.com/drive/folders/1xsrrEx8dKSZq0lf8rYUo9DQyjMXB5zUu?usp=sharing"}\
+    ]}\
+   ]}\
+  ]}\
+ ]}\
+ ]\
+}';

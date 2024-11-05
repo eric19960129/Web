@@ -1,0 +1,26 @@
+var jsonStrVideo = 
+'{\
+ "types":[\
+  {"type":"Photo","typeList":[\
+   {"name":"青禾動畫","index":0,"typeListInfos":[\
+    {"name":"青禾動畫","index":0,"msg":"\
+      https://www.youtube.com/embed/036KlKI-dPc;\
+      https://www.youtube.com/embed/AHeIZnmEc1w;\
+      https://www.youtube.com/embed/XvySbIVIYtA;\
+      https://www.youtube.com/embed/G3Pz4RXpGig;\
+      https://www.youtube.com/embed/DyDEemOXXZE;\
+      https://www.youtube.com/embed/CSq9QMxC5Qw\
+      "\
+    }\
+   ]},\
+   {"name":"阿貴動畫","index":1,"typeListInfos":[\
+    {"name":"阿貴動畫","index":0,"msg":"\
+      https://www.youtube.com/embed/dZ2TRbu8cz4;\
+      https://www.youtube.com/embed/rHb1pAfoCos;\
+      https://www.youtube.com/embed/mISXjYMdkQE;\
+      https://www.youtube.com/embed/oFnEorbd3Uw\
+      "\
+    }\
+   ]}\
+  ]}\
+]}';
