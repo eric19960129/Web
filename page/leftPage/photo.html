@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xml:lang="zh-TW">
+ <head>
+  <title>Hsu Home</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../style/formStyle.css">
+  <script src="../../script/uiDocument/leftFile/documentPhotoJson.js"></script>
+ </head>
+ <body>
+  <div id="main">
+   <script src="../../script/uiHtml/topbar.js"></script>
+   <h1><span id="typeOption" style="position:fixed;top:90px;width:100%;z-index:2;background-color:bisque;"></span></h1><!-- https://today.line.me/tw/v2/article/zBzL15 -->
+   <br><br><br>
+   <center>
+    <span id="infoMsg"></span>
+   </center>
+  </div>
+  <script>
+   //改變TopBar color
+   document.getElementById("topBar_photo").style.backgroundColor = "lightgreen";
+   document.getElementById("topBar_photo").style.color = "#FF0000";    
+
+   //讀取JSON 繪製下方UI
+   var obj = JSON.parse(jsonStrPhoto);
+   var optionList = "<center><h2><select id='sel' onchange='changeTypeList()' style='text-align:center'>";
+   obj.types[0].typeList.forEach(function(dataOption){
+     optionList += "<option value="+dataOption.index+">"+dataOption.name+"</option>";
+   });
+   optionList += "</select></h2></center>"
+   document.getElementById("typeOption").innerHTML = optionList;
+   
+   var infoMsgList = "<table width='85%'>\
+                       <tr>";
+   var array = obj.types[0].typeList[0].typeListInfos[0].msg.split(";");
+   array.forEach(function(dataOption, index)
+   {
+     if (index % 2 === 0 && index !== 0)//每兩個物件換行
+       infoMsgList += "</tr><tr>";
+       infoMsgList += `  <td style='width:50%'>\
+                           <center><h2 style="background-color:#ffffb8;margin-top:0px;margin-bottom: 0px;">${dataOption.split("$$")[0]}</h2></center>
+                           <a href="${dataOption.split("$$")[1]}" target='_blank'>\
+                             <img src="${dataOption.split("$$")[1]}" border='0'>\
+                           </a>\
+                         </td>`;
+   });
+   infoMsgList += "    </tr>"
+   infoMsgList += "  </table>"
+   document.getElementById("infoMsg").innerHTML = infoMsgList;
+
+   //Change Type List
+   function changeTypeList() {
+     var x = document.getElementById("sel").value;
+     var infoMsgList = "<table width='85%'>\
+                         <tr>";
+     var array = obj.types[0].typeList[x].typeListInfos[0].msg.split(";");
+     array.forEach(function(dataOption, index)
+     {
+       if (index % 2 === 0 && index !== 0)//每兩個物件換行
+         infoMsgList += "</tr><tr>";
+         infoMsgList += `  <td style='width:50%'>\
+                             <center><h2 style="background-color:#ffffb8;margin-top:0px;margin-bottom: 0px;">${dataOption.split("$$")[0]}</h2></center>
+                             <a href="${dataOption.split("$$")[1]}" target='_blank'>\
+                               <img src="${dataOption.split("$$")[1]}" border='0'>\
+                             </a>\
+                           </td>`;
+     });
+     infoMsgList += "    </tr>"
+     infoMsgList += "  </table>"
+     document.getElementById("infoMsg").innerHTML = infoMsgList;
+     //scroll置頂(主目錄和子目錄共存)
+     window.parent.scroll(0,0);
+   }
+  </script>
+ </body>
+</html>
