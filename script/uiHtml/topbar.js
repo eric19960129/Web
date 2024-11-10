@@ -39,9 +39,9 @@ document.writeln(`<nav class=\"navbar navbar-inverse\" style=\"position:fixed;to
                      </li>
                      <li class=\"dropdown\" style=\"border:5px orange double;\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\"><h2 id=\"topBar_QA\" style=\"color:white\">問與答<span class=\"caret\"></span></h2></a>
                       <ul class=\"dropdown-menu\">
-                 	     <li id=\"typeqa0\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/KnowleageInfo.html?index=0><h2 id=\"typefontqa0\">知識</h2></a></li>
-                 	     <li id=\"typeqa1\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/KnowleageInfo.html?index=1><h2 id=\"typefontqa1\">策略</h2></a></li>
-                       <li id=\"typeqa2\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/KnowleageInfo.html?index=2><h2 id=\"typefontqa2\">手冊</h2></a></li>
+                 	     <li id=\"typeqa0\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/knowleageInfo.html?index=0><h2 id=\"typefontqa0\">知識</h2></a></li>
+                 	     <li id=\"typeqa1\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/knowleageInfo.html?index=1><h2 id=\"typefontqa1\">策略</h2></a></li>
+                       <li id=\"typeqa2\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/knowleageInfo.html?index=2><h2 id=\"typefontqa2\">手冊</h2></a></li>
                       </ul>
                      </li>
                      <li id=\"topBar_Tool1\" style=\"border:5px orange double;\"><a href=`+basePath+`/topPage/tool.html><h2 id=\"topBar_Tool2\" style=\"color:white\">工具</h2></a></li>
@@ -66,7 +66,7 @@ document.writeln(`</nav>
                    	<a href=`+basePath+`/leftPage/photo.html id=\"topBar_photo\" style=\"border:5px orange double;\">圖片</a>
                    	<a href=`+basePath+`/leftPage/video.html id=\"topBar_video\" style=\"border:5px orange double;\">影片</a>
 					          <a href=`+basePath+`/leftPage/codeExample.html id=\"topBar_code\" style=\"border:5px orange double;\">程式</a>
-                    <a href=`+basePath+`/leftPage/FilePage.html id=\"topBar_FilePage\" style=\"border:5px orange double;\">文件</a>
+                    <a href=`+basePath+`/leftPage/filePage.html id=\"topBar_FilePage\" style=\"border:5px orange double;\">文件</a>
                     <a href=`+basePath+`/leftPage/chat.html id=\"topBar_chat\" style=\"border:5px orange double;\">留言板</a>
                    </div>`);
 var isVisiable = true;
