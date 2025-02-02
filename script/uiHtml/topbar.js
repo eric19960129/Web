@@ -37,7 +37,7 @@ document.writeln(`<nav class=\"navbar navbar-inverse\" style=\"position:fixed;to
                        <li id=\"typegame2\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/game.html?index=2><h2 id=\"typefontgame2\">PC遊戲</h2></a></li>
                       </ul>
                      </li>
-                     <li class=\"dropdown\" style=\"border:5px orange double;\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\"><h2 id=\"topBar_QA\" style=\"color:white\">問與答<span class=\"caret\"></span></h2></a>
+                     <li class=\"dropdown\" style=\"border:5px orange double;\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\"><h2 id=\"topBar_QA\" style=\"color:white\">Q&A<span class=\"caret\"></span></h2></a>
                       <ul class=\"dropdown-menu\">
                  	     <li id=\"typeqa0\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/knowleageInfo.html?index=0><h2 id=\"typefontqa0\">知識</h2></a></li>
                  	     <li id=\"typeqa1\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/knowleageInfo.html?index=1><h2 id=\"typefontqa1\">策略</h2></a></li>
@@ -121,10 +121,30 @@ function closeNav() {
 var scriptGoogleTranslate = document.createElement('script');
 scriptGoogleTranslate.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
 document.head.appendChild(scriptGoogleTranslate);
-/* Google翻譯 pageLanguage需先填中文，避免翻譯成英文不完整問題*/
+/* Google翻譯 原本用pageLanguage需先填中文，避免翻譯成英文不完整問題，但發現第一個會顯示請選取語言，切換語言後，第一個才變成繁體中文，已用下方事件修正*/
 function googleTranslateElementInit() {
-	new google.translate.TranslateElement({pageLanguage:'zh-TW',includedLanguages:'en,zh-CN,zh-TW'},'google_translate_element');
+  new google.translate.TranslateElement({
+    pageLanguage: 'zh-TW', //設定原始語言為繁體中文
+    includedLanguages: 'zh-TW,en,zh-CN'
+  },'google_translate_element');
 }
+// 自動選擇繁體中文為預設選項，修正pageLanguage問題
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function () {
+    const translateCombo = document.querySelector('.goog-te-combo');
+    if (translateCombo) {
+      translateCombo.selectedIndex = 0; //繁體中文是選項0
+      translateCombo.dispatchEvent(new Event('change')); //觸發語言變更事件
+      //確保選單顯示為繁體中文，並且不會變為英文
+      setTimeout(() => {
+        if (translateCombo.selectedIndex !== 0) {
+          translateCombo.selectedIndex = 0; //強制設為繁體中文
+          translateCombo.dispatchEvent(new Event('change')); //再次觸發語言變更事件
+        }
+      },200); //確保翻譯完成後再強制設置
+    }
+  },200); //確保選單已加載完成，主要一開始為英文選項，但語言感覺為中文，，所以需要把選項改為中文，不確定原因
+});
 function checkPermission()
 {
  permissionCount+=1;

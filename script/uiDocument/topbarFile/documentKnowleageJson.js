@@ -31,11 +31,15 @@ var jsonStrKnowleage =
     }\
    ]},\
    {"name":"安裝軟體","index":2,"typeListInfos":[\
-    {"name":"SQL Server安裝","index":0,"msg":"\
+    {"name":"Python安裝","index":0,"msg":"\
+     <iframe id=frameObj width=100% frameborder=0 src=https://docs.google.com/document/d/e/2PACX-1vQQLXk3s7lADi0YtzpjQd1pVUn7JoVMa-LylTan-MMKrHDzgEVvRWDnIJ7Ude9i4w/pub?embedded=true></iframe>}$$\
+     <iframe id=frameObj width=100% frameborder=0 src=https://drive.google.com/file/d/1cPLeTJsvg3MY6KBMfYiu6GXDYd9GqZZC/preview></iframe>"\
+    },\
+    {"name":"SQL Server安裝","index":1,"msg":"\
      <iframe id=frameObj width=100% frameborder=0 src=https://docs.google.com/document/d/e/2PACX-1vR4PUgJ27q4m_hOA4ziTTGTSq2sR0MMm8pKUCe5JvnG7Om4yDSsnK4z22r7GyQldA/pub?embedded=true></iframe>}$$\
      <iframe id=frameObj width=100% frameborder=0 src=https://drive.google.com/file/d/12HpBy3FKMT3DCsdtP00_BUVtqtdqna2E/preview></iframe>"\
     },\
-    {"name":"Anaconda安裝","index":1,"msg":"\
+    {"name":"Anaconda安裝","index":2,"msg":"\
      <iframe id=frameObj width=100% frameborder=0 src=https://docs.google.com/document/d/e/2PACX-1vQHkFpGsK39c5kh4nFDOzjX999NAX67_dITihrA8xRM4xk5VA4Yor6R02kS6VTLiA/pub?embedded=true></iframe>}$$\
      <iframe id=frameObj width=100% frameborder=0 src=https://drive.google.com/file/d/153yMi7eL2P8N701LPnpWzrHxO9L87O0T/preview></iframe>"\
     }\

@@ -39,6 +39,18 @@ var jsonStrTool =
       id=frameObj width=100% frameborder=0>\
      </iframe>"\
     }\
+   ]},\
+   {"name":"影片工具","index":4,"typeListInfos":[\
+    {"name":"Gimy","index":0,"msg":"\
+     <iframe src=https://gimy.ai/\
+      id=frameObj width=100% frameborder=0>\
+     </iframe>"\
+    },\
+    {"name":"小鴨看看","index":1,"msg":"\
+     <iframe src=https://tw.xiaoyakankan.com/\
+      id=frameObj width=100% frameborder=0>\
+     </iframe>"\
+    }\
    ]}\
   ]}\
 ]}';

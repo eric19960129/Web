@@ -111,7 +111,7 @@ ol {
  border: 1px solid #ccc;
  background-color: #f1f1f1;
  width: 16%;
- height: 790px; /*首頁左邊tab高度*/
+ height: 919px; /*首頁左邊tab高度*/
 }
 
 /* Style the buttons inside the tab */
@@ -119,7 +119,7 @@ ol {
  display: block;
  background-color: inherit;
  color: black;
- padding:115px 15px; /*首頁左邊tab文字  上 左*/
+ padding:117px 15px; /*首頁左邊tab文字  上 左*/
  width: 100%;
  border: none;
  outline: none;
@@ -136,7 +136,7 @@ ol {
  border: 1px solid #ccc;
  width: 84%;
  border-left: none;
- height: 909px; /*首頁右邊tab高度*/
+ height: 919px; /*首頁右邊tab高度*/
 }
 
 /* knowleageinfo toggle switch style start*/

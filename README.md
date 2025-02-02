@@ -7,7 +7,8 @@
 	 
  - 網頁版本分類:
 	 - 
-	 - PRD(正式環境):[URL](https://wwwhomegatewayhsuhomemyweb.on.drv.tw/myWeb/PRD/)
+	 - PRD(正式環境):[URL](https://eric19960129.github.io/Web/index.html)
+	 - Pre-PRD(初步正式環境):[URL](https://wwwhomegatewayhsuhomemyweb.on.drv.tw/myWeb/PRD/)
 	 - DEV(開發環境):[URL](https://wwwhomegatewayhsuhomemyweb.on.drv.tw/myWeb/DEV/)<br><br>
 
  - 網頁架設:
@@ -24,7 +25,8 @@ main ->> feature branch: Because have new issue,create feature branch
 feature branch-->>DEV: If feature branch developmented,merge to DEV
 DEV-->>ENV(GoogleDrive): If DEV branch UAT normal,DEV file push to Google Drive(DEV path)
 feature branch-->>main: If DEV test success,merge to main
-main-->>ENV(GoogleDrive): If main branch UAT normal,main file push to Google Drive(PRD path)
+main-->>ENV(GoogleDrive): If main branch UAT normal,main file push to Google Drive(Pre-PRD path)
+ENV(GoogleDrive)-->>GitHub: If www branch UAT normal,file push to GitHub(PRD path)
 ```
 <br><br>
 
@@ -41,6 +43,13 @@ main-->>ENV(GoogleDrive): If main branch UAT normal,main file push to Google Dri
 	 - DEBUG
 	 	- BranchName:DEBUG-XXXX1
 		- Item:Create new issue for [Monday](https://monday.com/)<br><br>
+
+ - RobotFramework
+ 	 - 
+	 - 測試檔案位置
+	 	- /robot
+ 	 - 測試指令
+		- robot --output ./logInfo/output.xml  --log ./logInfo/log.html --report ./logInfo/report.html test.robot<br><br>
 
  - 基礎Git Q&A指令
 	 - 
