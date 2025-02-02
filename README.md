@@ -14,7 +14,8 @@
  - 網頁架設:
 	 - 
 	 - 目前檔案存放於Google Drive利用[DriveToWeb](https://www.drv.tw/)架設個人網站
-	 - PRD、DEV環境架設於同一個雲端硬碟，利用資料夾做區分<br><br>
+	 - Pre-PRD、DEV環境架設於同一個雲端硬碟，利用資料夾做區分
+	 - PRD環境架設於GitHub，利用公開網域的方式，提供使用<br><br>
 
  - 目前Git上版流程
 	 - 
@@ -34,22 +35,31 @@ ENV(GoogleDrive)-->>GitHub: If www branch UAT normal,file push to GitHub(PRD pat
  	 - 
 	 - 主要管理各項目
 	 	- [Trello](https://trello.com/b/aGtJwNkU/myweb)
+		- 所有ISSUE歸類
  	 - FEATURE
 	 	- BranchName:FTURE-XXXX1
-		- Item:Create new issue for [Jira](https://www.atlassian.com/software/jira)
+		- Item:Create new issue for [Jira](https://eric19960129.atlassian.net/jira/core/projects/MYW/board)
+		- 未來改變的目標
  	 - ISSUE
 	 	- BranchName:ISSUE-XXXX1
 		- Item:Create new issue for gitLab
+		- 不影響整體運作，才開的ISSUE
 	 - DEBUG
 	 	- BranchName:DEBUG-XXXX1
-		- Item:Create new issue for [Monday](https://monday.com/)<br><br>
+		- Item:Create new issue for [Taiga](https://tree.taiga.io/project/eric19960129-mywebschedule/timeline)
+		- 影響整體運作，才開的ISSUE<br><br>
 
  - RobotFramework
  	 - 
 	 - 測試檔案位置
 	 	- /robot
+	 - 隱藏測試時產生git commit change的檔案問題，利用.gitignore來忽視
+	 	- 位置:根目錄/.gitignore
  	 - 測試指令
-		- robot --output ./logInfo/output.xml  --log ./logInfo/log.html --report ./logInfo/report.html test.robot<br><br>
+		- robot --output ./logInfo/output.xml  --log ./logInfo/log.html --report ./logInfo/report.html test.robot
+		- --output 產生output檔案位置
+		- --log    產生log檔案位置
+		- --report 產生report檔案位置<br><br>
 
  - 基礎Git Q&A指令
 	 - 
