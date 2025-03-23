@@ -21,7 +21,7 @@ var jsonStrTool =
    ]},\
    {"name":"壓縮工具","index":1,"typeListInfos":[\
     {"name":"圖片壓縮","index":0,"msg":"\
-     <iframe src=https://products.aspose.app/words/zh-hant/compress/jpg\
+     <iframe src=https://imagestool.com/zh_TW/compress-images\
       id=frameObj width=100% frameborder=0>\
      </iframe>"\
     }\
@@ -41,13 +41,18 @@ var jsonStrTool =
     }\
    ]},\
    {"name":"影片工具","index":4,"typeListInfos":[\
-    {"name":"Gimy","index":0,"msg":"\
-     <iframe src=https://gimy.ai/\
+    {"name":"小鴨看看","index":0,"msg":"\
+     <iframe src=https://tw.xiaoyakankan.com/\
       id=frameObj width=100% frameborder=0>\
      </iframe>"\
     },\
-    {"name":"小鴨看看","index":1,"msg":"\
-     <iframe src=https://tw.xiaoyakankan.com/\
+    {"name":"IPTV345","index":1,"msg":"\
+     <iframe src=https://iptv345.com/\
+      id=frameObj width=100% frameborder=0>\
+     </iframe>"\
+    },\
+    {"name":"Gimy","index":2,"msg":"\
+     <iframe src=https://gimy.ai/\
       id=frameObj width=100% frameborder=0>\
      </iframe>"\
     }\
