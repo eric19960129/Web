@@ -56,18 +56,21 @@ ENV(GoogleDrive)-->>GitHub: If www branch UAT normal,file push to GitHub(PRD pat
 	 - 隱藏測試時產生git commit change的檔案問題，利用.gitignore來忽視
 	 	- 位置:根目錄/.gitignore
  	 - 測試指令
-		- robot --output ./logInfo/output.xml  --log ./logInfo/log.html --report ./logInfo/report.html test.robot
+		- robot --output ./logInfo/output.xml --log ./logInfo/log.html --report ./logInfo/report.html test.robot
 		- --output 產生output檔案位置
 		- --log    產生log檔案位置
 		- --report 產生report檔案位置<br><br>
 
  - 基礎Git Q&A指令
 	 - 
-	 - Q: 當需要創建新的branch來源參考main並切換到新分支，指令為何?
+	 - Q: 當需要創建新的branch來源參考main並切換到新分支，再上傳到遠端，指令為何?
 	 - A:
 		 - **git checkout main** (先切到main branch)
 		 - **git pull** (讓main branch拉取最新資料)
 		 - **git checkout -b bname main** (bname為建立新的分支名稱來源為main)
+		 - **git push -u origin bname** (bname為建立新的分支名稱再推新分支到遠端)
+		 - **git commit -m "test commit"** (提交更改的資訊)
+		 - **git push** (把有更改的commit推到遠端的新分支)
 	 - Q: 當遠端分支已經刪除，需要本地端同步，並刪除本機端不要的分支，指令為何?
 	 - A:
 		 - **git checkout main** (先切到main branch)
