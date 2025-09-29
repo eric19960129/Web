@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xml:lang="zh-TW">
+ <head>
+  <title>Hsu Home</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../style/formStyle.css">
+ </head>
+ <body style="margin:0;padding:0;overflow:hidden" scroll="no"><!--雙重視窗不跳出雙scrollerbar-->
+  <div id="main"> 
+   <script src="../../script/uiHtml/topbar.js"></script>
+  </div>
+  <script type="text/javascript">
+   //改變TopBar color
+   document.getElementById("topBar_weather1").style.backgroundColor = "lightgreen";
+   document.getElementById("topBar_weather2").style.color = "#FF0000";
+   //矯正iframe,embed,object畫面無法正常顯示問題
+   document.getElementById('ifm').height = document.documentElement.scrollHeight-90;
+   //監測畫面zoon縮放
+   window.onresize = function() {
+    document.getElementById("href_weather").click();
+   };
+  </script>
+ </body>
+</html>
+

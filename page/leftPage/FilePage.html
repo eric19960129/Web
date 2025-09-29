@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xml:lang="zh-TW">
+ <head>
+  <title>Hsu Home</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../style/formStyle.css">
+  <script src="https://eric19960129.github.io/WebExtra/webExtraInfo/leftbarFile/documentFileJson.js"></script>
+ </head>
+ <body style="margin:0;padding:0;overflow:hidden" scroll="no"><!--雙重視窗不跳出雙scrollerbar-->
+  <div id="main">
+   <script src="../../script/uiHtml/topbar.js"></script>
+   <h1><span id="typeOptionArray" style="position:fixed;top:90px;width:100%;z-index:2;background-color:bisque;"></span></h1>
+   <br><br><br>
+   <span id="infoOption"></span>
+  </div>
+  <script>
+   //改變TopBar color
+   document.getElementById("topBar_FilePage").style.backgroundColor = "lightgreen";
+   document.getElementById("topBar_FilePage").style.color = "#FF0000";
+
+   var obj = JSON.parse(jsonStrFile);
+   //initial DropDown Type
+   var optionList = "<center><h1><select id=sel onchange=changeInfo() style=text-align:center>";
+   obj.types[0].typeList[0].typeListInfos.forEach(function(dataOption){
+    optionList += "<option value="+dataOption.index+">"+dataOption.name+"</option>";
+   });
+   optionList += "</select>種類<select id=selList onchange=changeInfo('table') style=text-align:center>";
+   obj.types[0].typeList[0].typeListInfos[0].typeList.forEach(function(dataOption){
+    optionList += "<option value="+dataOption.index+">"+dataOption.name+"</option>";
+   });
+   optionList += "</select></h1></center>";
+   document.getElementById("typeOptionArray").innerHTML = optionList;
+   changeInfo();
+
+   //Function change DropDown Type click event (分為兩種顯示方式 1.直接顯示table 2.將type再次分類再次呼叫顯示table)
+   function changeInfo(type="") {
+    var x = document.getElementById("sel").value;
+    if(type=="table") //2.有兩個選項，切type再次分類換顯示table
+    {
+     var x = document.getElementById("sel").value;
+     var xx = document.getElementById("selList").value;
+     var optionInfo = "<center><Table width=85%><tr><th style=text-align:center><h2>名稱</h2></th><th style=text-align:center><h2>載點</h2></th></tr>";
+     obj.types[0].typeList[0].typeListInfos[x].typeList[xx].typeListInfo.forEach(function(dataOption){
+     optionInfo += "<tr>\
+                     <td style='text-align:center'><h2>"+dataOption.gameName+"</h2></td>\
+                     <td style=text-align:center><a href='"+dataOption.path+"'target=_blank><h2>Download</h2></a></td>\
+                    </tr>"
+     });
+     optionInfo += "</Table></center>";
+     document.getElementById("infoOption").innerHTML = optionInfo;
+    }
+    else //2.有兩個選項，切type
+    { 
+     optionListInfo = "<select id=selList onchange=changeInfo('table') style=text-align:center>";
+     obj.types[0].typeList[0].typeListInfos[x].typeList.forEach(function(dataOption){
+      optionListInfo += "<option value="+dataOption.index+">"+dataOption.name+"</option>";
+     });
+     document.getElementById("selList").innerHTML = optionListInfo + "</select>";
+     changeInfo("table");
+    }
+   }
+  </script>
+ </body>
+</html>
