@@ -21,7 +21,7 @@
     let obj = null; // 全域變數存 JSON 物件
 
     // 載入 JSON 檔案並初始化畫面
-    fetch('https://raw.githubusercontent.com/eric19960129/WebExtra/main/webExtraInfo/topbarFile/documentTool.json')
+    fetch('https://eric19960129.github.io/WebExtra/webExtraInfo/MyWeb/topbarFile/documentTool.json')
       .then(response => {
         if (!response.ok) throw new Error('HTTP 錯誤: ' + response.status);
         return response.json(); //會把取得資訊轉成json物件，轉到then後面的data
