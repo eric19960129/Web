@@ -53,96 +53,58 @@
     });
     optionInfo += "</select>";
     document.getElementById("infoOption").innerHTML = optionInfo;
-    //default下面選單跟著變動(預設顯示第一個)
-    document.getElementById("infoMsg").innerHTML = obj.types[typeIndex].typeList[x].typeListInfos[0].msg.split("$$")[0];
-    //如果沒有PDF連結，就不顯示切換word & pdf
-    if(obj.types[typeIndex].typeList[x].typeListInfos[0].msg.split("$$").length === 1)
-        document.getElementById("extraTool").hidden = true;
-    else
-        document.getElementById("extraTool").hidden = false;
+    document.getElementById("infoMsg").innerHTML = obj.types[typeIndex].typeList[x].typeListInfos[0].msg;
     LoadInfoListSize();
    }
    //Change Info List
    function changeInfoList(switchType="") {
     var x = document.getElementById("sel").value;
     var xx = document.getElementById("selList").value;
-    //如果沒有PDF連結，就不顯示切換word & pdf
-    if(obj.types[typeIndex].typeList[x].typeListInfos[0].msg.split("$$").length === 1)
-    {
-        document.getElementById("extraTool").hidden = true;
-        var optionInfo = obj.types[typeIndex].typeList[x].typeListInfos[xx].msg.split("$$")[0];
-        document.getElementById("infoMsg").innerHTML = optionInfo;
-        LoadInfoListSize();
-    }
-    else
-    {
-        document.getElementById("extraTool").hidden = false;
-        if(switchType=="") { //初始狀態word格式
-            var optionInfo = obj.types[typeIndex].typeList[x].typeListInfos[xx].msg.split("$$")[0];
-            document.getElementById("infoMsg").innerHTML = optionInfo;
-            LoadInfoListSize();
-        }else{
-            var optionInfo = obj.types[typeIndex].typeList[x].typeListInfos[xx].msg.split("$$")[1];
-            document.getElementById("infoMsg").innerHTML = optionInfo;
-            LoadInfoListSize("PDF");
-        }
-    }
+    document.getElementById("infoMsg").innerHTML = obj.types[typeIndex].typeList[x].typeListInfos[xx].msg;
+    LoadInfoListSize();
    }
-   function LoadInfoListSize(switchType="") {
-    //Strategy   //http://www.11.re/html/520.html 提供圖示網站
-    if(typeIndex==1){ //策略頁面
-     document.getElementById("extraTool").innerHTML = "&nbsp;<a href="+document.getElementById("frameObj").src+" target='_blank'>開新頁面&#9658;</a>";
-    }else if(typeIndex==0){ //知識頁面
-     if(switchType=="") { //初始狀態word格式
-      document.getElementById("extraTool").innerHTML = "<label class=\"switch\"><input id=\checkboxDocumentType\ type=\"checkbox\" onclick=\"changeDocumentType()\"><span class=\"slider round\"</span></label>";
-     }else {
-      document.getElementById("extraTool").innerHTML = "<label class=\"switch\"><input id=\checkboxDocumentType\ type=\"checkbox\" onclick=\"changeDocumentType()\" checked><span class=\"slider round\"</span></label>";
-     }
-    }
+   //觸發更換下拉選單
+   function LoadInfoListSize() {
+    document.getElementById("extraTool").innerHTML = "&nbsp;<a href="+document.getElementById("frameObj").src+" target='_blank'>開新頁面▶</a>";
+    const frame = document.getElementById("frameObj");
     // 每次產生新的iframe時增加载绑定加載事件監聽器
-    document.getElementById("frameObj").addEventListener('load', onLoadHandler);
+    frame.addEventListener('load', onLoadHandler, {once: true});
     document.getElementById('loader').style.display = 'block';
-    document.getElementById('frameObj').style.display = 'none';
+    frame.style.display = 'none';
    }
-   //切換switch更換成word or pdf 
-   function changeDocumentType() {
-    var checkBox = document.getElementById("checkboxDocumentType");
-    if (checkBox.checked == true){ //pdf
-     var x = document.getElementById("sel").value;
-     var xx = document.getElementById("selList").value;
-     var optionInfo = obj.types[typeIndex].typeList[x].typeListInfos[xx].msg.split("$$")[1];
-     document.getElementById("infoMsg").innerHTML = optionInfo;
-     LoadInfoListSize("PDF");
-    } else { //word
-     var x = document.getElementById("sel").value;
-     var xx = document.getElementById("selList").value;
-     var optionInfo = obj.types[typeIndex].typeList[x].typeListInfos[xx].msg.split("$$")[0];
-     document.getElementById("infoMsg").innerHTML = optionInfo;
-     LoadInfoListSize();
-    }
-   }
-   //監測畫面zoon縮放
-   window.onresize = function() {
-    //去判斷當前switch狀態(word or pdf)
-    var checkBox = document.getElementById("checkboxDocumentType");
-    if(checkBox==null) { //type==1為策略頁面
-     changeInfoList();
-    }else if (checkBox.checked == true){ //pdf
-     changeInfoList("PDF");
-    }else {
-     changeInfoList();
-    }
-   };
    //iframe載入完實作項目
    function onLoadHandler() {
-    document.getElementById('frameObj').style.display = 'block';
-    document.getElementById('loader').style.display = 'none';
-    //因切換info會無法監聽事件，所以移除舊的事件監聽器
-    document.getElementById("frameObj").removeEventListener('load', onLoadHandler);
-    //矯正iframe,embed,object畫面無法正常顯示問題
-    var fmObj = document.getElementById('frameObj');
-    fmObj.height = document.documentElement.scrollHeight-170;
+    const frame = document.getElementById('frameObj');
+    const loader = document.getElementById('loader');
+    frame.style.display = 'block';
+    const topBarHeight = 170; //上方固定標題列 + padding
+    let availableHeight = document.documentElement.clientHeight - topBarHeight;
+    frame.height = availableHeight + "px";
+    frame.style.height = availableHeight + "px";
+    //先綁定「當 iframe 真正載入完成時」的事件
+    frame.onload = function() {
+     // 確保真的重繪完成後，才隱藏 loader
+     loader.style.display = 'none';
+     // 移除監聽器，避免之後重複觸發
+     frame.onload = null; 
+    };
+    //延遲一下再去觸發強制重繪（保持你原本修正置中/切底的機制）
+    setTimeout(() => {
+     const currentSrc = frame.src;
+     //觸發這行會讓 iframe 重新 reload，完成後就會觸發上面的 frame.onload
+     frame.src = currentSrc + (currentSrc.includes('?') ? '&' : '?') + 't=' + Date.now();
+    }, 300); //延遲只需留200~300ms觸發網址變更即可，不用等它載入完
    }
+   //視窗大小改變時重新調整(防止zoon縮放問題)
+   window.addEventListener('resize', function() {
+    const frame = document.getElementById('frameObj');
+    if (frame && frame.style.display !== 'none') {
+     const topBarHeight = 170;
+     const newHeight = document.documentElement.clientHeight - topBarHeight;
+     frame.height = newHeight + "px";
+     frame.style.height = newHeight + "px";
+    }
+   });
   </script>
  </body>
 </html>

@@ -8,8 +8,8 @@
  - 網頁版本分類:
 	 - 
 	 - PRD(正式環境):[URL](https://eric19960129.github.io/Web/index.html)
-	 - Pre-PRD(初步正式環境):[URL](https://wwwhomegatewayhsuhomemyweb.on.drv.tw/myWeb/PRD/)
-	 - DEV(開發環境):[URL](https://wwwhomegatewayhsuhomemyweb.on.drv.tw/myWeb/DEV/)<br><br>
+	 - Pre-PRD(初步正式環境):[URL](https://myweb-preprd-32fed.web.app)
+	 - DEV(開發環境):[URL](https://myweb-dev-48d00.web.app)<br><br>
 
  - 網頁架設:
 	 - 

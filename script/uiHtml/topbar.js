@@ -25,6 +25,14 @@ if (currentPath.includes('/page/leftPage')) {
 	};
 	document.body.appendChild(scriptJquery);
 //dropdown start 下拉選單效果結束
+
+//隱藏 Google 翻譯預設的突兀工具列，並防止fixed導覽列位移
+document.writeln(`<style>
+	#google_translate_element, .goog-te-banner-frame, .skiptranslate { display: none !important; }
+	body { top: 0px !important; }
+	.goog-text-highlight { background-color: transparent !important; box-shadow: none !important; border: none !important; }
+</style>`);
+
 document.writeln(`<nav class=\"navbar navbar-inverse\" style=\"position:fixed;top:0;width:100%; z-index:3;height: 90px;\">
                    <div class=\"container-fluid\">
                     <ul class=\"nav navbar-nav\">
@@ -35,6 +43,7 @@ document.writeln(`<nav class=\"navbar navbar-inverse\" style=\"position:fixed;to
                        <li id=\"typegame0\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/game.html?index=0><h2 id=\"typefontgame0\">LF2</h2></a></li>
                        <li id=\"typegame1\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/game.html?index=1><h2 id=\"typefontgame1\">GBA</h2></a></li>
                        <li id=\"typegame2\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/game.html?index=2><h2 id=\"typefontgame2\">PC遊戲</h2></a></li>
+                       <li id=\"typegame3\" style=\"border:5px black double;\"><a href=`+basePath+`/topPage/game.html?index=3><h2 id=\"typefontgame3\">線上遊戲</h2></a></li>
                       </ul>
                      </li>
                      <li class=\"dropdown\" style=\"border:5px orange double;\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\"><h2 id=\"topBar_QA\" style=\"color:white\">Q&A<span class=\"caret\"></span></h2></a>
@@ -48,8 +57,15 @@ document.writeln(`<nav class=\"navbar navbar-inverse\" style=\"position:fixed;to
                      <li id=\"topBar_weather1\" style=\"border:5px orange double;\"><a id=\"href_weather\" href=`+basePath+`/topPage/weather.html?keyName=weather><h2 id=\"topBar_weather2\" style=\"color:white\">天氣</h2></a></li>
                     </ul>
                     <ul class=\"nav navbar-nav navbar-right\" id=\"selectLanguage\">
-                     <li style=\"margin-top:20px;"\><font size=\"10\" color=\"white\" style=\"margin-top=15px;\" onclick=\"checkPermission()\">&#9816;</font></li>
-                 	   <li><span id=\"google_translate_element\"></span></li>
+                     <li style=\"margin-top:20px;\"><font size=\"10\" color=\"white\" style=\"margin-top:15px;\" onclick=\"checkPermission()\">&#9816;</font></li>
+                     <li style=\"display:none;\"><span id=\"google_translate_element\"></span></li>
+                     <li>
+                      <select id=\"custom_lang_select\" onchange=\"changeLanguage(this.value)\" style=\"margin-top:30px; font-size:25px; background-color:#ffffff; color:#333333; border:1px solid #cccccc; padding:8px 12px; border-radius:4px; cursor:pointer; font-family: sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.1);\">
+                       <option value=\"original\">繁體中文</option>
+                       <option value=\"zh-CN\">简体中文</option>
+                       <option value=\"en\">English</option>
+                      </select>
+                    </li>
                     </ul>
                    </div>`);
 var permissionCount = 0;
@@ -73,6 +89,19 @@ var isVisiable = true;
 //網頁生命週期DOMContentLoaded，重新載入，若未加會產生錯誤
 document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById("selectLanguage").style.marginRight = "0";//initial selectLanguage Position
+	//檢查是否有歷史翻譯紀錄Cookie，同步自訂選單的顯示狀態，避免跨頁面或重新整理時錯位
+	setTimeout(function () {
+		const cookies = document.cookie.split('; ');
+		const googtrans = cookies.find(row => row.startsWith('googtrans='));
+		if (googtrans) {
+			const langVal = googtrans.split('=')[1];
+			const currentLang = langVal.split('/').pop(); //取得 'en' 或 'zh-CN'
+			const customSelect = document.getElementById('custom_lang_select');
+			if (customSelect && (currentLang === 'en' || currentLang === 'zh-CN')) {
+				customSelect.value = currentLang;
+			}
+		}
+	}, 300);
 });
 function openNav() {
 	if(isVisiable)
@@ -121,30 +150,46 @@ function closeNav() {
 var scriptGoogleTranslate = document.createElement('script');
 scriptGoogleTranslate.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
 document.head.appendChild(scriptGoogleTranslate);
-/* Google翻譯 原本用pageLanguage需先填中文，避免翻譯成英文不完整問題，但發現第一個會顯示請選取語言，切換語言後，第一個才變成繁體中文，已用下方事件修正*/
+//Google翻譯初始化
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'zh-TW', //設定原始語言為繁體中文
-    includedLanguages: 'zh-TW,en,zh-CN'
-  },'google_translate_element');
+ // 將實例綁定到 window.googleTranslator，以便後續函式呼叫內部核心方法
+ window.googleTranslator = new google.translate.TranslateElement({
+  pageLanguage: 'zh-TW', //原始語言為繁體中文
+  includedLanguages: 'en,zh-CN', //移除zh-TW，不讓Google翻譯處理原生繁體中文
+  autoDisplay: false
+ }, 'google_translate_element');
 }
-// 自動選擇繁體中文為預設選項，修正pageLanguage問題
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function () {
-    const translateCombo = document.querySelector('.goog-te-combo');
-    if (translateCombo) {
-      translateCombo.selectedIndex = 0; //繁體中文是選項0
-      translateCombo.dispatchEvent(new Event('change')); //觸發語言變更事件
-      //確保選單顯示為繁體中文，並且不會變為英文
-      setTimeout(() => {
-        if (translateCombo.selectedIndex !== 0) {
-          translateCombo.selectedIndex = 0; //強制設為繁體中文
-          translateCombo.dispatchEvent(new Event('change')); //再次觸發語言變更事件
-        }
-      },200); //確保翻譯完成後再強制設置
+
+//切換語言
+function changeLanguage(lang) {
+ if(lang === 'original')
+ {
+  //尋找 Google內置的核心restore方法，瞬間恢復成原本繁體中文
+  var restored = false;
+  if(window.googleTranslator) {
+   Object.keys(window.googleTranslator).forEach((k) => {
+    if(!restored && typeof window.googleTranslator[k]?.restore === 'function') {
+     window.googleTranslator[k].restore();
+     restored = true;
     }
-  },200); //確保選單已加載完成，主要一開始為英文選項，但語言感覺為中文，，所以需要把選項改為中文，不確定原因
-});
+   });
+  }
+  //清除翻譯Cookie，確保下次重新整理網頁時也是原本繁體中文
+  document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + document.domain;
+ }
+ else
+ {
+  //選擇其他語言，交由Google去觸發原生的變更事件
+  const translateCombo = document.querySelector('.goog-te-combo');
+  if (translateCombo)
+  {
+   translateCombo.value = lang;
+   translateCombo.dispatchEvent(new Event('change'));
+  }
+ }
+}
+
 function checkPermission()
 {
  permissionCount+=1;
