@@ -1,2 +1,4 @@
 # 主要用途robot產生資料夾的忽略，以免每次測試都產生新的檔案
 robot/logInfo
+.gitlab-ci.yml
+firebase.json
